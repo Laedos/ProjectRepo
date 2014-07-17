@@ -12,5 +12,7 @@ public interface IAnimal {
 
 	void Stand();
 
+	void Kill();
+
 
 }

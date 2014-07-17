@@ -11,5 +11,9 @@ public class HpScript : MonoBehaviour {
 	
 	public void ReceiveDamage(float damage) {
 		hp -= damage;
+		if (hp <= 0) {
+			gameObject.GetComponent<SampleAnimal>().Kill();		
+		}
+
 	}
 }

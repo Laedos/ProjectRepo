@@ -51,4 +51,9 @@ public class SampleAnotherAnimal : MonoBehaviour, IAnimal {
 
 	}
 
+	public void Kill() {
+
+	}
+
+
 }

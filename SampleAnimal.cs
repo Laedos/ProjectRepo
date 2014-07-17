@@ -27,16 +27,13 @@ public class SampleAnimal : MonoBehaviour, IAnimal {
 	}
 
 	void Update() {
-		if (hpScript.hp > 0) {
 			if (isDamaged || isChased) {
 						RunAway ();		
-			} else if(((player.transform.position) - (transform.position)).magnitude < farSight){
-				RunAwayFromPlayer();
-			}
-				else{
-					Walk ();
-					}
-			}
+				} else if (((player.transform.position) - (transform.position)).magnitude < farSight) {
+						RunAwayFromPlayer ();
+				} else {
+						Walk ();
+				}			
 	}
 
 	public void Walk () {
@@ -81,5 +78,9 @@ public class SampleAnimal : MonoBehaviour, IAnimal {
 
 	public void Stand(){
 		transform.Translate (Vector3.zero);
+	}
+
+	public void Kill() {
+		this.enabled = false;
 	}
 }
