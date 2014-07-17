@@ -3,18 +3,19 @@ using System.Collections;
 
 public class Smell : MonoBehaviour {
 
+	GameObject characterPosition;
+	Wind wind;
+
 	// Use this for initialization
 	void Start () {
-	
+		characterPosition = GameObject.FindGameObjectWithTag("Player");
+		wind = GameObject.FindGameObjectWithTag ("wind").GetComponent<Wind> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
-	}
-
-
-	void FixedUpdate (){
+		transform.position = characterPosition.transform.position + wind.wind;
+		
 	}
 
 	void OnTriggerEnter(Collider coll) {
