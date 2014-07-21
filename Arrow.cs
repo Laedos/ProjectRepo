@@ -49,6 +49,9 @@ public class Arrow : MonoBehaviour {
 			Debug.Log("Dealing " + Mag * Weight / 5 + " damage");
 			HpScript.ReceiveDamage(Mag * Weight / 5);
 			coll.gameObject.GetComponent<SampleAnimal>().isDamaged = true;
+			//gameObject.collider.enabled = false;
+			//rigidbody.isKinematic = true;
+			//rigidbody.useGravity = false;
 			
 			Destroy (this);
 		}
