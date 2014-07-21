@@ -3,7 +3,7 @@ using System.Collections;
 
 public class SampleAnimal : MonoBehaviour, IAnimal {
 
-	bool isDamaged = false;
+	public bool isDamaged = false;
 	public bool isChased = false;
 
 	private int farSight = 3;

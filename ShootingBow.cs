@@ -39,6 +39,7 @@ public class ShootingBow : MonoBehaviour {
 		Debug.Log ("Fire!");
 		GameObject arrow;
 		arrow = Instantiate (Projectile, new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, Camera.main.transform.position.z) , Camera.main.transform.rotation) as GameObject;
+		arrow.GetComponent<Arrow> ().Power = Power;
 		arrow.transform.position += arrow.transform.TransformDirection (Vector3.forward*1.5f);
 		
 	}

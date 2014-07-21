@@ -4,10 +4,12 @@ using UnityEngine;
 using System.Collections;
 
 public class Arrow : MonoBehaviour {
+	private float Weight = 1.0f;
 	public float Speed = 5.0f;
 	public float ExpireTime = 1.0f;
 	private HpScript HpScript = null;
 	private float MaxMag;
+	public float Power;
 	ShootingBow sb;
 	// Use this for initialization
 	void Start () {
@@ -41,7 +43,9 @@ public class Arrow : MonoBehaviour {
 	void OnCollisionEnter(Collision coll){
 		HpScript = coll.gameObject.GetComponent<HpScript> ();
 		if (HpScript != null) {
-			HpScript.ReceiveDamage(40f);
+			HpScript.ReceiveDamage(Power * Weight / 5);
+			coll.gameObject.GetComponent<SampleAnimal>().isDamaged = true;
+			Debug.Log("Deal " + Power * Weight / 5 + " damage.");
 			gameObject.collider.enabled = false;
 			rigidbody.isKinematic = true;
 			rigidbody.useGravity = false;
