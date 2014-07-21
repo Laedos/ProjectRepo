@@ -11,6 +11,7 @@ public class Arrow : MonoBehaviour {
 	private float MaxMag;
 	public float Power;
 	ShootingBow sb;
+	public float Mag;
 	// Use this for initialization
 	void Start () {
 		sb = GameObject.FindGameObjectWithTag ("Player").GetComponent<ShootingBow>();
@@ -22,7 +23,7 @@ public class Arrow : MonoBehaviour {
 		
 	}
 	void FixedUpdate(){
-		
+
 		rigidbody.AddForce (Physics.gravity * rigidbody.mass, ForceMode.Acceleration);
 		
 		transform.forward = Vector3.Slerp(transform.forward, rigidbody.velocity.normalized, 1);
@@ -30,6 +31,7 @@ public class Arrow : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		Mag = rigidbody.velocity.magnitude;
 		if (rigidbody.velocity.magnitude > MaxMag) {
 			MaxMag = rigidbody.velocity.magnitude;
 			//      Debug.Log ("Fired at " + rigidbody.velocity.magnitude + " mag.");
@@ -43,12 +45,10 @@ public class Arrow : MonoBehaviour {
 	void OnCollisionEnter(Collision coll){
 		HpScript = coll.gameObject.GetComponent<HpScript> ();
 		if (HpScript != null) {
-			HpScript.ReceiveDamage(Power * Weight / 5);
+			gameObject.transform.parent = coll.transform;
+			Debug.Log("Dealing " + Mag * Weight / 5 + " damage");
+			HpScript.ReceiveDamage(Mag * Weight / 5);
 			coll.gameObject.GetComponent<SampleAnimal>().isDamaged = true;
-			Debug.Log("Deal " + Power * Weight / 5 + " damage.");
-			gameObject.collider.enabled = false;
-			rigidbody.isKinematic = true;
-			rigidbody.useGravity = false;
 			
 			Destroy (this);
 		}
